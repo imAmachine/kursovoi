@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}Личный кабинет{% endblock %}
+
+{% block content %}
+  <h1>Личный кабинет администратора</h1>
+  
+  <h2>Продукты</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Название</th>
+        <th>Цена</th>
+        <th>Описание</th>
+        <th>Доставка</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for product in products %}
+        <tr>
+          <td>{{ product.name }}</td>
+          <td>{{ product.price }}</td>
+          <td>{{ product.description }}</td>
+          <td>{% if product.has_delivery %}Да{% else %}Нет{% endif %}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
+  <h2>Клиенты</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Название компании</th>
+        <th>Адрес</th>
+        <th>Телефон</th>
+        <th>Контактное лицо</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for customer in customers %}
+        <tr>
+          <td>{{ customer.company_name }}</td>
+          <td>{{ customer.address }}</td>
+          <td>{{ customer.phone }}</td>
+          <td>{{ customer.contact_person }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
+  <h2>Сделки</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Клиент</th>
+        <th>Дата покупки</th>
+        <th>Количество</th>
+        <th>Продукт</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for deal in deals %}
+        <tr>
+          <td>{{ deal.customer.company_name }}</td>
+          <td>{{ deal.purchase_date }}</td>
+          <td>{{ deal.quantity }}</td>
+          <td>{{ deal.product.name }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
+{% endblock %}
